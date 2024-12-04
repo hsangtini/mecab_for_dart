@@ -1,35 +1,12 @@
 import 'dart:core';
-import 'dart:typed_data';
 import 'package:flutter/services.dart';
 
-import 'dart:ffi';
+import 'package:wasm_ffi/ffi_utils_bridge.dart';
 import 'dart:io';
-
-import 'package:ffi/ffi.dart';
+import 'token_node.dart';
 import 'mecab_ffi.dart';
 
 
-
-/// Class that represent one token from mecab's output.
-class TokenNode {
-  /// The surface form of the token (how it appears in the text)
-  String surface = "";
-  /// A list of features of this token (varies depending on the dictionar you
-  /// are using)
-  List<String> features = [];
-
-  TokenNode(String item) {
-    var arr = item.split('\t');
-    if (arr.isNotEmpty) {
-      surface = arr[0];
-    }
-    if (arr.length == 2) {
-      features = arr[1].split(',');
-    } else {
-      features = [];
-    }
-  }
-}
 
 /// Class that represents a Mecab instance
 class Mecab {
@@ -44,7 +21,7 @@ class Mecab {
   ];
 
   /// Pointer to the Mecab instance on the C side
-  Pointer<Void>? mecabPtr;
+  late final MecabDartFfi mecabDartFfi;
 
 
   /// Initializes this mecab instance, `dictDir` should be a directory that
@@ -54,15 +31,20 @@ class Mecab {
   /// 
   /// Warning: This method needs to be called before any other method
   Future<void> init(Directory dictDir, bool includeFeatures) async {
+  
     var options = includeFeatures ? "" : "-Owakati";
-    mecabPtr = initMecabFfi(options.toNativeUtf8(), dictDir.absolute.path.toNativeUtf8());
+    mecabDartFfi = await (MecabDartFfi()..init());
+    mecabDartFfi.mecabPtr = mecabDartFfi.initMecabFfi(
+      options.toNativeUtf8(),
+      dictDir.absolute.path.toNativeUtf8());
+  
   }
 
   /// Parses the given text using mecab and returns mecab's output
   List<TokenNode> parse(String input) {
-    if (mecabPtr != null) {
+    if (mecabDartFfi.mecabPtr != null) {
       var resultStr =
-          (parseFfi(mecabPtr!, input.toNativeUtf8())).toDartString().trim();
+          (mecabDartFfi.parseFfi(mecabDartFfi.mecabPtr!, input.toNativeUtf8())).toDartString().trim();
 
       List<String> items;
       if (resultStr.contains('\n')) {
@@ -82,8 +64,8 @@ class Mecab {
 
   /// Frees the memory used by mecab and 
   void destroy() {
-    if (mecabPtr != null) {
-      destroyMecabFfi(mecabPtr!);
+    if (mecabDartFfi.mecabPtr != null) {
+      mecabDartFfi.destroyMecabFfi(mecabDartFfi.mecabPtr!);
     }
   }
 
