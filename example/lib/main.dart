@@ -48,7 +48,6 @@ class _MyAppState extends State<MyApp> {
       //   + 1st parameter : dictionary folder
       //   + 2nd parameter : additional mecab options
       await tagger.init(ipaDict, true);
-      //await tagger.init(await getApplicationSupportDirectory(), true);
 
       tokens = tagger.parse(controller.text);
 
