@@ -2,6 +2,12 @@
 
 MeCab(Japanese Morphological Analyzer) wrapper for Flutter on iOS/Android.
 
+This fork improves upon the original project in these ways
+
+* Windows arm64 support
+* Dart only support
+* Mecab can be loaded from paths that contain spaces
+
 ## Usage
 
 1. Add this plug_in `mecab_dart` as a [dependency in your pubspec.yaml file](https://flutter.io/platform-plugins/).
@@ -12,7 +18,7 @@ dependencies:
 
 2. Copy Mecab dictionary (ipadic) to your assets folder
 
-3. **Windows only setup**
+3. Windows only setup
 Create a `blobs` folder on the top level of your application and copy the dll's from `example/blobs` there.
 Lastly, open `windows/CMakeLists.txt` of your application and append at the end:
 
@@ -67,9 +73,13 @@ for(var token in tokens) {
 }
 ```
 
-### Building on Windows
+### Building for Windows
 
 Because mecab uses nmake on windows to compile, the mecab DLL needs to be created separately.
 For this open a [**Developer Command Prompt**](https://learn.microsoft.com/en-us/visualstudio/ide/reference/command-prompt-powershell?view=vs-2022) and change in the `windows/src` directory.
 In this directory execute `nmake -f  Makefile.x64.msvc` (compile on x86) or `nmake -f  Makefile.arm64.msvc` (compile on arm64).
 After the build process finished, there should be a `libmecab.dll` in `windows/src`.
+
+### Building for web
+
+TODO
