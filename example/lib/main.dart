@@ -1,8 +1,11 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'dart:async';
 import 'package:flutter/services.dart';
 
 import 'package:mecab_dart/mecab_dart.dart';
+import 'package:mecab_dart/helper.dart';
 
 void main() => runApp(MyApp());
 
@@ -35,10 +38,16 @@ class _MyAppState extends State<MyApp> {
     try {
       platformVersion = await Mecab.platformVersion;
 
+      // this example ships a mecab dictionary in assets
+      // alternatively you can dowlaod it from somwhere
+      String ipadDictPath = assetUri("assets/ipadic", null);
+      Directory ipaDict = Directory(ipadDictPath);
+
       // Initialize mecab tagger here 
-      //   + 1st parameter : dictionary asset folder
-      //   + 2nd parameter : additional mecab options      
-      await tagger.init("assets/ipadic", true);
+      //   + 1st parameter : dictionary folder
+      //   + 2nd parameter : additional mecab options
+      await tagger.init(ipaDict, true);
+      //await tagger.init(await getApplicationSupportDirectory(), true);
 
       tokens = tagger.parse(controller.text);
 
