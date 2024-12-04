@@ -67,6 +67,11 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  flutter_web_plugins:
+    dependency: transitive
+    description: flutter
+    source: sdk
+    version: "0.0.0"
   http:
     dependency: transitive
     description:
@@ -290,10 +295,11 @@ packages:
   wasm_ffi:
     dependency: transitive
     description:
-      name: wasm_ffi
-      sha256: "20520670922bee88efef57a02551073203814f54afca80b2bc74be8bcdb95bc1"
-      url: "https://pub.dev"
-    source: hosted
+      path: "."
+      ref: HEAD
+      resolved-ref: "02cafec9b406f577b748d10b6bff3760312d83f1"
+      url: "https://github.com/vm75/wasm_ffi"
+    source: git
     version: "1.0.2"
   web:
     dependency: transitive
