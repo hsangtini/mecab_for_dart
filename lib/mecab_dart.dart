@@ -1,4 +1,5 @@
 import 'dart:core';
+import 'dart:typed_data';
 import 'package:flutter/services.dart';
 
 import 'dart:ffi';
@@ -8,38 +9,38 @@ import 'package:path/path.dart';
 import 'package:ffi/ffi.dart';
 import 'package:path_provider/path_provider.dart';
 
-typedef initMecabFunc = Pointer<Void> Function(
+typedef InitMecabFunc = Pointer<Void> Function(
     Pointer<Utf8> options, Pointer<Utf8> dicdir);
-typedef parseFunc = Pointer<Utf8> Function(
+typedef ParseFunc = Pointer<Utf8> Function(
     Pointer<Void> m, Pointer<Utf8> input);
-typedef destroyMecabFunc = Void Function(Pointer<Void> mecab);
-typedef destroyMecab_func = void Function(Pointer<Void> mecab);
+typedef DestroyMecabFunc = Void Function(Pointer<Void> mecab);
+typedef DestroyMecabFuncC = void Function(Pointer<Void> mecab);
 
 final DynamicLibrary mecabDartLib = () {
-  if(Platform.isAndroid)
+  if(Platform.isAndroid){
     return DynamicLibrary.open("libmecab_dart.so");
-  else if(Platform.isWindows)
+  }
+  else if(Platform.isWindows) {
     return DynamicLibrary.open(
       "${Directory(Platform.resolvedExecutable).parent.path}/blobs/libmecab.dll"
     );
-  else
+  }
+  else {
     return DynamicLibrary.process();
+  }
 } ();
 
 final initMecabPointer =
-    mecabDartLib.lookup<NativeFunction<initMecabFunc>>('initMecab');
-final initMecabFfi = initMecabPointer.asFunction<initMecabFunc>();
+    mecabDartLib.lookup<NativeFunction<InitMecabFunc>>('initMecab');
+final initMecabFfi = initMecabPointer.asFunction<InitMecabFunc>();
 
-final parsePointer = mecabDartLib.lookup<NativeFunction<parseFunc>>('parse');
-final parseFfi = parsePointer.asFunction<parseFunc>();
+final parsePointer = mecabDartLib.lookup<NativeFunction<ParseFunc>>('parse');
+final parseFfi = parsePointer.asFunction<ParseFunc>();
 
 final destroyMecabPointer =
-    mecabDartLib.lookup<NativeFunction<destroyMecabFunc>>('destroyMecab');
-final destroyMecabFfi = destroyMecabPointer.asFunction<destroyMecab_func>();
+    mecabDartLib.lookup<NativeFunction<DestroyMecabFunc>>('destroyMecab');
+final destroyMecabFfi = destroyMecabPointer.asFunction<DestroyMecabFuncC>();
 
-final int Function(int x, int y) nativeAdd = mecabDartLib
-    .lookup<NativeFunction<Int32 Function(Int32, Int32)>>("native_add")
-    .asFunction();
 
 
 /// Class that represent one token from mecab's output.
@@ -52,7 +53,7 @@ class TokenNode {
 
   TokenNode(String item) {
     var arr = item.split('\t');
-    if (arr.length > 0) {
+    if (arr.isNotEmpty) {
       surface = arr[0];
     }
     if (arr.length == 2) {
@@ -74,10 +75,10 @@ class Mecab {
   {
     if (FileSystemEntity.typeSync('$dicdir/$fileName') ==
         FileSystemEntityType.notFound) {
-      var data = (await rootBundle.load('$assetDicDir/$fileName'));
-      var buffer = data.buffer;
-      var bytes = buffer.asUint8List(data.offsetInBytes, data.lengthInBytes);
-      new File('$dicdir/$fileName').writeAsBytesSync(bytes);
+      ByteData data = (await rootBundle.load('$assetDicDir/$fileName'));
+      ByteBuffer buffer = data.buffer;
+      Uint8List bytes = buffer.asUint8List(data.offsetInBytes, data.lengthInBytes);
+      File('$dicdir/$fileName').writeAsBytesSync(bytes);
     }
   }
 
@@ -101,7 +102,7 @@ class Mecab {
 
     if (FileSystemEntity.typeSync(mecabrc) == FileSystemEntityType.notFound) {
       // Create new mecabrc file
-      var mecabrcFile = await (new File(mecabrc).create(recursive: true));
+      var mecabrcFile = await (File(mecabrc).create(recursive: true));
       mecabrcFile.writeAsStringSync("");
     }
 
@@ -125,7 +126,7 @@ class Mecab {
 
     if (FileSystemEntity.typeSync(mecabrc) == FileSystemEntityType.notFound) {
       // Create new mecabrc file
-      var mecabrcFile = await (new File(mecabrc).create(recursive: true));
+      var mecabrcFile = await (File(mecabrc).create(recursive: true));
       mecabrcFile.writeAsStringSync("");
     }
 
@@ -139,7 +140,7 @@ class Mecab {
       var resultStr =
           (parseFfi(mecabPtr!, input.toNativeUtf8())).toDartString().trim();
 
-      var items;
+      List<String> items;
       if (resultStr.contains('\n')) {
         items = resultStr.split('\n');
       } else {
@@ -162,7 +163,7 @@ class Mecab {
     }
   }
 
-  static const MethodChannel _channel = const MethodChannel('mecab_dart');
+  static const MethodChannel _channel = MethodChannel('mecab_dart');
 
   static Future<String> get platformVersion async {
     final String version = await _channel.invokeMethod('getPlatformVersion');
