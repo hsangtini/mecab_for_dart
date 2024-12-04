@@ -1,0 +1,1 @@
+export 'mecab_dart_lib_native.dart' if (dart.library.js_interop) 'mecab_dart_lib_wasm.dart';

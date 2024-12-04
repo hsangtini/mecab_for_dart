@@ -1,9 +1,8 @@
-import 'dart:io';
+import 'mecab_dart_lib/mecab_dart_lib.dart';
 
-import 'dart:ffi' as native_ffi;
-import 'package:flutter/foundation.dart';
 import 'package:wasm_ffi/ffi_bridge.dart';
 import 'package:wasm_ffi/ffi_utils_bridge.dart';
+
 
 
 typedef InitMecabFunc = Pointer<Void> Function(
@@ -31,22 +30,7 @@ class MecabDartFfi {
   /// Initializes the communication to ffi
   void init() async{
 
-    final DynamicLibrary mecabDartLib = await () async {
-      if(Platform.isAndroid){
-        return await DynamicLibrary.open("libmecab_dart.so");
-      }
-      else if(Platform.isWindows) {
-        return await DynamicLibrary.open(
-          "${Directory(Platform.resolvedExecutable).parent.path}/blobs/libmecab.dll"
-        );
-      }
-      else if (kIsWeb){
-        return await DynamicLibrary.open("");
-      }
-      else {
-        return native_ffi.DynamicLibrary.process() as DynamicLibrary;
-      }
-    } ();
+    final mecabDartLib = await loadMecabDartLib();
 
     initMecabPointer = mecabDartLib.lookup<NativeFunction<InitMecabFunc>>('initMecab');
     initMecabFfi = initMecabPointer.asFunction<InitMecabFunc>();
