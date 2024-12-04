@@ -6,6 +6,7 @@ import 'package:flutter/services.dart';
 
 import 'package:mecab_dart/mecab_dart.dart';
 import 'package:mecab_dart/helper.dart';
+import 'package:mecab_dart/token_node.dart';
 
 void main() => runApp(MyApp());
 
