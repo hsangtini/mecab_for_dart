@@ -32,7 +32,7 @@ class MecabDartFfi {
 
 
   /// Initializes the communication to ffi
-  void init() async{
+  Future<void> init() async {
 
     mecabDartWrapper = await loadMecabDartLib();
 

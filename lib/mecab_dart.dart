@@ -28,16 +28,16 @@ class Mecab {
   /// token-features.
   /// 
   /// Warning: This method needs to be called before any other method
-  Future<void> init(Directory dictDir, bool includeFeatures) async {
+  Future<void> init(String dictDir, bool includeFeatures) async {
   
     var options = includeFeatures ? "" : "-Owakati";
-    mecabDartFfi = await (MecabDartFfi()..init());
+    mecabDartFfi = MecabDartFfi();
+    await mecabDartFfi.init();
 
-    /*mecabDartFfi.mecabDartWrapper.safeUsing((p0) {
+    mecabDartFfi.mecabDartWrapper.safeUsing((p0) {
       mecabDartFfi.mecabPtr = mecabDartFfi.initMecabFfi(
-      options.toNativeUtf8(),
-      dictDir.absolute.path.toNativeUtf8());
-    },);*/
+        options.toNativeUtf8(), dictDir.toNativeUtf8());
+    },);
     
   }
 

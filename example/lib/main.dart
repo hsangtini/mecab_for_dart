@@ -41,14 +41,13 @@ class _MyAppState extends State<MyApp> {
       // this example ships a mecab dictionary in assets
       // alternatively you can dowlaod it from somwhere
       String ipadDictPath = assetUri("assets/ipadic", null);
-      Directory ipaDict = Directory(ipadDictPath);
 
       // Initialize mecab tagger here 
       //   + 1st parameter : dictionary folder
       //   + 2nd parameter : additional mecab options
-      await tagger.init(ipaDict, true);
+      await tagger.init(ipadDictPath, true);
 
-      //tokens = tagger.parse(controller.text);
+      tokens = tagger.parse(controller.text);
 
     } on PlatformException {
       platformVersion = 'Failed to get platform version.';
