@@ -35,6 +35,6 @@ flutter:
   assets:
     - assets/ipadic/
     - blobs/libmecab.wasm
-    #- blobs/libmecab.js
+    - blobs/libmecab.js
 
   uses-material-design: true
