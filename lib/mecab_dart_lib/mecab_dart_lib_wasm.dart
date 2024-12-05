@@ -1,12 +1,11 @@
 import 'dart:async';
 
-import 'package:wasm_ffi/ffi.dart';
 import 'package:wasm_ffi/ffi_wrapper.dart';
 
 
 
-Future<DynamicLibrary> loadMecabDartLib () async {
+Future<FfiWrapper> loadMecabDartLib () async {
 
-  return (await FfiWrapper.load("")).library;
+  return (await FfiWrapper.load("assets/blobs/libmecab.wasm"));
   
 }

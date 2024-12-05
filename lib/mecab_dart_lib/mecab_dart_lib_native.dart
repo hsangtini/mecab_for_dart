@@ -8,18 +8,21 @@ import 'package:wasm_ffi/ffi_wrapper.dart';
 
 
 
-Future<DynamicLibrary> loadMecabDartLib () async {
+Future<FfiWrapper> loadMecabDartLib () async {
+
+  DynamicLibrary d;
 
   if(Platform.isAndroid){
-    return (await FfiWrapper.load("libmecab_dart.so")).library;
+    d = (await FfiWrapper.load("libmecab_dart.so")).library;
   }
   else if(Platform.isWindows) {
-    return (await FfiWrapper.load(
+    d = (await FfiWrapper.load(
       "${Directory(Platform.resolvedExecutable).parent.path}/blobs/libmecab.dll"
     )).library;
   }
   else {
-    //return (await FfiWrapper.load("")).library;
-    return  native_ffi.DynamicLibrary.process() as DynamicLibrary;
+    d = native_ffi.DynamicLibrary.process() as DynamicLibrary;
   }
+
+  return FfiWrapper(d);
 }

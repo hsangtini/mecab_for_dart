@@ -24,6 +24,7 @@ dependencies:
   # Mecab dart wrapper
   mecab_dart:
     path: ../
+  universal_io: ^2.2.2
 
 dev_dependencies:
   flutter_test:
@@ -33,5 +34,7 @@ dev_dependencies:
 flutter:
   assets:
     - assets/ipadic/
+    - blobs/libmecab.wasm
+    #- blobs/libmecab.js
 
   uses-material-design: true

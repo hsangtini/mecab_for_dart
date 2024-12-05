@@ -7,6 +7,7 @@ import 'package:flutter/services.dart';
 import 'package:mecab_dart/mecab_dart.dart';
 import 'package:mecab_dart/helper.dart';
 import 'package:mecab_dart/token_node.dart';
+import 'package:myapp/helper.dart';
 
 void main() => runApp(MyApp());
 
@@ -35,9 +36,7 @@ class _MyAppState extends State<MyApp> {
   }
 
   Future<void> initPlatformState() async {
-    String platformVersion;    
     try {
-      platformVersion = await Mecab.platformVersion;
 
       // this example ships a mecab dictionary in assets
       // alternatively you can dowlaod it from somwhere
@@ -49,7 +48,7 @@ class _MyAppState extends State<MyApp> {
       //   + 2nd parameter : additional mecab options
       await tagger.init(ipaDict, true);
 
-      tokens = tagger.parse(controller.text);
+      //tokens = tagger.parse(controller.text);
 
     } on PlatformException {
       platformVersion = 'Failed to get platform version.';
@@ -57,10 +56,7 @@ class _MyAppState extends State<MyApp> {
 
     if (!mounted) return;
 
-    setState(() {
-      platformVersion = platformVersion;
-      print(platformVersion);
-    });
+    setState(() { });
   }
 
   @override

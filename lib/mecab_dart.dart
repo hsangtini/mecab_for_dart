@@ -10,7 +10,7 @@ import 'mecab_ffi.dart';
 class Mecab {
 
   /// The method channel to communicate
-  static const MethodChannel _channel = MethodChannel('mecab_dart');
+  //static const MethodChannel _channel = MethodChannel('mecab_dart');
 
   /// List of file names that are used in a mecab dictionary
   List<String> mecabDictFiles = [
@@ -32,10 +32,13 @@ class Mecab {
   
     var options = includeFeatures ? "" : "-Owakati";
     mecabDartFfi = await (MecabDartFfi()..init());
-    mecabDartFfi.mecabPtr = mecabDartFfi.initMecabFfi(
+
+    /*mecabDartFfi.mecabDartWrapper.safeUsing((p0) {
+      mecabDartFfi.mecabPtr = mecabDartFfi.initMecabFfi(
       options.toNativeUtf8(),
       dictDir.absolute.path.toNativeUtf8());
-  
+    },);*/
+    
   }
 
   /// Parses the given text using mecab and returns mecab's output
@@ -67,8 +70,4 @@ class Mecab {
     }
   }
 
-  static Future<String> get platformVersion async {
-    final String version = await _channel.invokeMethod('getPlatformVersion');
-    return version;
-  }
 }
