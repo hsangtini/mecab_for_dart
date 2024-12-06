@@ -82,4 +82,11 @@ After the build process finished, there should be a `libmecab.dll` in `windows/s
 
 ### Building for web
 
-TODO
+On web this plugin uses WASM.
+
+To compile for WASM this project uses [Emscripten](https://emscripten.org/).
+Therefore, to compile a wasm binary, first emscripten needs to be installed.
+Then, a WASM binary can be compiled by running `compile_wasm.sh`.
+This will generate `libmecab.js` and `libmecab.wasm` in the folder `emcc_out/`.
+Those files then need to be loaded by your application.
+For more details, see the example.
