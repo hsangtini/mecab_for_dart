@@ -13,6 +13,7 @@ typedef ParseFunc = Pointer<Utf8> Function(
     Pointer<Void> m, Pointer<Utf8> input);
 typedef DestroyMecabFunc = Void Function(Pointer<Void> mecab);
 typedef DestroyMecabFuncC = void Function(Pointer<Void> mecab);
+typedef NativeAddFunc = void Function(Pointer<Void> mecab);
 
 /// Class that contains all Mecab FFi things
 class MecabDartFfi {
@@ -30,6 +31,8 @@ class MecabDartFfi {
   late final Pointer<NativeFunction<DestroyMecabFunc>> destroyMecabPointer;
   late final DestroyMecabFuncC destroyMecabFfi;
 
+  late final int Function(int x, int y) nativeAddFunc;
+
 
   /// Initializes the communication to ffi
   Future<void> init() async {
@@ -44,5 +47,11 @@ class MecabDartFfi {
 
     destroyMecabPointer = mecabDartWrapper.library.lookup<NativeFunction<DestroyMecabFunc>>('destroyMecab');
     destroyMecabFfi = destroyMecabPointer.asFunction<DestroyMecabFuncC>();
+
+    nativeAddFunc = mecabDartWrapper.library
+      .lookup<NativeFunction<Int32 Function(Int32, Int32)>>('native_add')
+      .asFunction();
+
+    
   }
 }

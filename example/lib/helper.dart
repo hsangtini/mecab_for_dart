@@ -28,7 +28,7 @@ String assetUri(String asset, String? package) {
     return 'assets://flutter_assets/$key';
   }
   else if (kIsWeb) {
-    return "assets/$asset";
+    return "/$asset";
   }
   else {
     throw PlatformException(code: "Platform unsupported");

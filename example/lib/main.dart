@@ -1,11 +1,8 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'dart:async';
 import 'package:flutter/services.dart';
 
 import 'package:mecab_dart/mecab_dart.dart';
-import 'package:mecab_dart/helper.dart';
 import 'package:mecab_dart/token_node.dart';
 import 'package:myapp/helper.dart';
 
@@ -40,7 +37,7 @@ class _MyAppState extends State<MyApp> {
 
       // this example ships a mecab dictionary in assets
       // alternatively you can dowlaod it from somwhere
-      String ipadDictPath = assetUri("assets/ipadic", null);
+      String ipadDictPath = "ipadic";//assetUri("assets/ipadic", null);
 
       // Initialize mecab tagger here 
       //   + 1st parameter : dictionary folder

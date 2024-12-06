@@ -1,6 +1,4 @@
-import 'package:flutter/services.dart';
 import 'package:wasm_ffi/ffi_utils_bridge.dart';
-import 'dart:io';
 import 'token_node.dart';
 import 'mecab_ffi.dart';
 
@@ -35,32 +33,36 @@ class Mecab {
     await mecabDartFfi.init();
 
     mecabDartFfi.mecabDartWrapper.safeUsing((p0) {
-      mecabDartFfi.mecabPtr = mecabDartFfi.initMecabFfi(
-        options.toNativeUtf8(), dictDir.toNativeUtf8());
+        mecabDartFfi.mecabPtr = mecabDartFfi.initMecabFfi(
+      options.toNativeUtf8(), dictDir.toNativeUtf8());
     },);
+
+    print(mecabDartFfi.nativeAddFunc(3, 3));
     
   }
 
   /// Parses the given text using mecab and returns mecab's output
   List<TokenNode> parse(String input) {
-    if (mecabDartFfi.mecabPtr != null) {
-      var resultStr =
-          (mecabDartFfi.parseFfi(mecabDartFfi.mecabPtr!, input.toNativeUtf8())).toDartString().trim();
 
-      List<String> items;
-      if (resultStr.contains('\n')) {
-        items = resultStr.split('\n');
-      } else {
-        items = resultStr.split(' ');
-      }
+    var resultStr = "";
 
-      List<TokenNode> tokens = [];
-      for (var item in items) {
-        tokens.add(TokenNode(item));
-      }
-      return tokens;
+    resultStr =
+      (mecabDartFfi.parseFfi(mecabDartFfi.mecabPtr!, input.toNativeUtf8()))
+      .toDartString().trim();
+
+    List<String> items;
+    if (resultStr.contains('\n')) {
+      items = resultStr.split('\n');
+    } else {
+      items = resultStr.split(' ');
     }
-    return [];
+
+    List<TokenNode> tokens = [];
+    for (var item in items) {
+      tokens.add(TokenNode(item));
+    }
+    return tokens;
+
   }
 
   /// Frees the memory used by mecab and 
