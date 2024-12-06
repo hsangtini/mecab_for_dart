@@ -44,6 +44,8 @@ class _MyAppState extends State<MyApp> {
       //   + 2nd parameter : additional mecab options
       await tagger.init(ipadDictPath, true);
 
+      print("Connection to the C-side established: ${tagger.mecabDartFfi.nativeAddFunc(3, 3) == 6}");
+
       tokens = tagger.parse(controller.text);
 
     } on PlatformException {

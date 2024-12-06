@@ -36,8 +36,6 @@ class Mecab {
         mecabDartFfi.mecabPtr = mecabDartFfi.initMecabFfi(
       options.toNativeUtf8(), dictDir.toNativeUtf8());
     },);
-
-    print(mecabDartFfi.nativeAddFunc(3, 3));
     
   }
 
