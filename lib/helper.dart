@@ -1,7 +1,9 @@
+// Dart imports:
 import 'dart:io';
 import 'dart:typed_data';
-import 'package:flutter/services.dart';
 
+// Flutter imports:
+import 'package:flutter/services.dart';
 
 /// Copies `assetDicDir/fileName` to `dicdir/fileName` if it does not already
 /// exist

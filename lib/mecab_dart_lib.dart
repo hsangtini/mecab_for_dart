@@ -1,9 +1,12 @@
+// Dart imports:
 import 'dart:async';
+
+// Flutter imports:
 import 'package:flutter/foundation.dart';
-import 'package:universal_io/io.dart';
+
+// Package imports:
 import 'package:universal_ffi/ffi_helper.dart';
-
-
+import 'package:universal_io/io.dart';
 
 Future<FfiHelper> loadMecabDartLib () async {
 

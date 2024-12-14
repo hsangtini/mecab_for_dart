@@ -1,8 +1,9 @@
+// Package imports:
 import 'package:universal_ffi/ffi_utils.dart' as ffi;
-import 'token_node.dart';
+
+// Project imports:
 import 'mecab_ffi.dart';
-
-
+import 'token_node.dart';
 
 /// Class that represents a Mecab instance
 class Mecab {

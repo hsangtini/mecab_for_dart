@@ -1,10 +1,10 @@
-import 'mecab_dart_lib.dart';
-
+// Package imports:
 import 'package:universal_ffi/ffi.dart';
-import 'package:universal_ffi/ffi_utils.dart';
 import 'package:universal_ffi/ffi_helper.dart';
+import 'package:universal_ffi/ffi_utils.dart';
 
-
+// Project imports:
+import 'mecab_dart_lib.dart';
 
 typedef InitMecabFunc = Pointer<Void> Function(
   Pointer<Utf8> options, Pointer<Utf8> dicdir);
