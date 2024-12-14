@@ -1,8 +1,8 @@
 name: mecab_dart
-description: Flutter plugin which provides binding to  Mecab library (Japanese Morphological Analyzer) on iOS and Android
+description: Dart plugin which provides binding to  Mecab library (Japanese Morphological Analyzer)
 version: 1.0.0
 homepage:
-  https://github.com/dttvn0010/mecab_dart
+  https://github.com/captaindario/mecab_for_dart
 
 environment:
   sdk: '>=2.12.0'
