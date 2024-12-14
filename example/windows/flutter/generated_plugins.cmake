@@ -3,7 +3,7 @@
 #
 
 list(APPEND FLUTTER_PLUGIN_LIST
-  mecab_dart
+  mecab_for_dart
 )
 
 list(APPEND FLUTTER_FFI_PLUGIN_LIST

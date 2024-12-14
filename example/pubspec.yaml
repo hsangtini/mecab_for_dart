@@ -22,7 +22,7 @@ dependencies:
     sdk: flutter
 
   # Mecab dart wrapper
-  mecab_dart:
+  mecab_for_dart:
     path: ../
   universal_io: ^2.2.2
 

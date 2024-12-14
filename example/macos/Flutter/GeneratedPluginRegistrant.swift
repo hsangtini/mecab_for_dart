@@ -5,7 +5,7 @@
 import FlutterMacOS
 import Foundation
 
-import mecab_dart
+import mecab_for_dart
 import path_provider_foundation
 
 func RegisterGeneratedPlugins(registry: FlutterPluginRegistry) {

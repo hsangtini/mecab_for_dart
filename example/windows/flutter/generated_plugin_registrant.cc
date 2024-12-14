@@ -6,7 +6,7 @@
 
 #include "generated_plugin_registrant.h"
 
-#include <mecab_dart/mecab_dart_plugin_c_api.h>
+#include <mecab_for_dart/mecab_dart_plugin_c_api.h>
 
 void RegisterPlugins(flutter::PluginRegistry* registry) {
   MecabDartPluginCApiRegisterWithRegistrar(

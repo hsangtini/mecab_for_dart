@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'dart:async';
 import 'package:flutter/services.dart';
 
-import 'package:mecab_dart/mecab_dart.dart';
-import 'package:mecab_dart/token_node.dart';
+import 'package:mecab_for_dart/mecab_dart.dart';
+import 'package:mecab_for_dart/token_node.dart';
 import 'package:myapp/helper.dart';
 
 void main() => runApp(MyApp());
