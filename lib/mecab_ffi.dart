@@ -1,16 +1,15 @@
-import 'package:wasm_ffi/ffi_wrapper.dart';
+import 'mecab_dart_lib.dart';
 
-import 'mecab_dart_lib/mecab_dart_lib.dart';
-
-import 'package:wasm_ffi/ffi_bridge.dart';
-import 'package:wasm_ffi/ffi_utils_bridge.dart';
+import 'package:universal_ffi/ffi.dart';
+import 'package:universal_ffi/ffi_utils.dart';
+import 'package:universal_ffi/ffi_helper.dart';
 
 
 
 typedef InitMecabFunc = Pointer<Void> Function(
-    Pointer<Utf8> options, Pointer<Utf8> dicdir);
+  Pointer<Utf8> options, Pointer<Utf8> dicdir);
 typedef ParseFunc = Pointer<Utf8> Function(
-    Pointer<Void> m, Pointer<Utf8> input);
+  Pointer<Void> m, Pointer<Utf8> input);
 typedef DestroyMecabFunc = Void Function(Pointer<Void> mecab);
 typedef DestroyMecabFuncC = void Function(Pointer<Void> mecab);
 typedef NativeAddFunc = void Function(Pointer<Void> mecab);
@@ -18,7 +17,7 @@ typedef NativeAddFunc = void Function(Pointer<Void> mecab);
 /// Class that contains all Mecab FFi things
 class MecabDartFfi {
 
-  late final FfiWrapper mecabDartWrapper;
+  late final FfiHelper mecabDartFfiHelper;
 
   late final Pointer<Void>? mecabPtr;
 
@@ -37,21 +36,27 @@ class MecabDartFfi {
   /// Initializes the communication to ffi
   Future<void> init() async {
 
-    mecabDartWrapper = await loadMecabDartLib();
+    mecabDartFfiHelper = await loadMecabDartLib();
 
-    initMecabPointer = mecabDartWrapper.library.lookup<NativeFunction<InitMecabFunc>>('initMecab');
+    initMecabPointer = mecabDartFfiHelper.library
+      .lookup<NativeFunction<InitMecabFunc>>('initMecab');
     initMecabFfi = initMecabPointer.asFunction<InitMecabFunc>();
 
-    parsePointer = mecabDartWrapper.library.lookup<NativeFunction<ParseFunc>>('parse');
+    parsePointer = mecabDartFfiHelper.library
+      .lookup<NativeFunction<ParseFunc>>('parse');
     parseFfi = parsePointer.asFunction<ParseFunc>();
 
-    destroyMecabPointer = mecabDartWrapper.library.lookup<NativeFunction<DestroyMecabFunc>>('destroyMecab');
+    destroyMecabPointer = mecabDartFfiHelper.library
+      .lookup<NativeFunction<DestroyMecabFunc>>('destroyMecab');
     destroyMecabFfi = destroyMecabPointer.asFunction<DestroyMecabFuncC>();
 
-    nativeAddFunc = mecabDartWrapper.library
+    nativeAddFunc = mecabDartFfiHelper.library
       .lookup<NativeFunction<Int32 Function(Int32, Int32)>>('native_add')
       .asFunction();
 
-    
   }
+
 }
+
+
+

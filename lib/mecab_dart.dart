@@ -1,4 +1,4 @@
-import 'package:wasm_ffi/ffi_utils_bridge.dart';
+import 'package:universal_ffi/ffi_utils.dart' as ffi;
 import 'token_node.dart';
 import 'mecab_ffi.dart';
 
@@ -7,8 +7,6 @@ import 'mecab_ffi.dart';
 /// Class that represents a Mecab instance
 class Mecab {
 
-  /// The method channel to communicate
-  //static const MethodChannel _channel = MethodChannel('mecab_dart');
 
   /// List of file names that are used in a mecab dictionary
   List<String> mecabDictFiles = [
@@ -32,10 +30,10 @@ class Mecab {
     mecabDartFfi = MecabDartFfi();
     await mecabDartFfi.init();
 
-    mecabDartFfi.mecabDartWrapper.safeUsing((p0) {
-        mecabDartFfi.mecabPtr = mecabDartFfi.initMecabFfi(
-      options.toNativeUtf8(), dictDir.toNativeUtf8());
-    },);
+    ffi.using((ffi.Arena arena) {
+      mecabDartFfi.mecabPtr = mecabDartFfi.initMecabFfi(
+        options.toNativeUtf8(), dictDir.toNativeUtf8());
+    }, (mecabDartFfi.mecabDartFfiHelper.library).allocator);
     
   }
 
