@@ -1,2 +1,3 @@
-./example/blobs/*
-./docs/*
+example/blobs/**
+example/assets/**
+docs/**
