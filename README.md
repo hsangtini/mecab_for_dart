@@ -1,24 +1,21 @@
-# mecab_dart
+# mecab_for_dart
 
-MeCab(Japanese Morphological Analyzer) wrapper for Flutter on iOS/Android.
+MeCab(Japanese Morphological Analyzer) bindings for dart (standalone dart and flutter!) on all platforms.
 
-This fork improves upon the original project in these ways
+| Android | iOS | Windows | MacOS | Linux | Web | Web --wasm |
+|:-------:|:---:|:-------:|:-----:|:-----:|:---:|:----------:|
+|    ✅    |  ✅  |    ✅    |   ✅   |   ✅   |  ✅  |      ❌     |
 
-* Windows arm64 support
-* Dart only support
-* Mecab can be loaded from paths that contain spaces
+## Installation
 
-## Usage
-
-1. Add this plug_in `mecab_dart` as a [dependency in your pubspec.yaml file](https://flutter.io/platform-plugins/).
+1. Add this plug_in as a [dependency in your pubspec.yaml file](https://flutter.io/platform-plugins/).
 ```yaml
 dependencies:   
-   mecab_dart: 0.1.6
+   mecab_for_dart: <your_version> 
 ```
 
-2. Copy Mecab dictionary (ipadic) to your assets folder
-
-3. Windows only setup
+<details>
+<summary>Windows only setup</summary>
 Create a `blobs` folder on the top level of your application and copy the dll's from `example/blobs` there.
 Lastly, open `windows/CMakeLists.txt` of your application and append at the end:
 
@@ -40,10 +37,11 @@ install(
     libmecab.dll
 )
 ```
+</details>
 
 1. Try `example/lib/main.dart` or the following example.
 
-### Example
+## Example
 
 Init the tagger:
 
@@ -73,14 +71,16 @@ for(var token in tokens) {
 }
 ```
 
-### Building for Windows
+## Building the binaries
+
+### Windows
 
 Because mecab uses nmake on windows to compile, the mecab DLL needs to be created separately.
 For this open a [**Developer Command Prompt**](https://learn.microsoft.com/en-us/visualstudio/ide/reference/command-prompt-powershell?view=vs-2022) and change in the `windows/src` directory.
 In this directory execute `nmake -f  Makefile.x64.msvc` (compile on x86) or `nmake -f  Makefile.arm64.msvc` (compile on arm64).
 After the build process finished, there should be a `libmecab.dll` in `windows/src`.
 
-### Building for web
+### Web
 
 On web this plugin uses WASM.
 
