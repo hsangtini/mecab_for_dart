@@ -90,7 +90,7 @@ On web this plugin uses WASM.
 
 To compile for WASM this project uses [Emscripten](https://emscripten.org/).
 Therefore, to compile a wasm binary, first emscripten needs to be installed.
-Then, a WASM binary can be compiled by running `compile_wasm.sh`.
+Then, a WASM binary can be compiled by running `compile_wasm_bare.sh` (no dictionary included) or `compile_wasm_embed.sh` (ipadic embedded).
 This will generate `libmecab.js` and `libmecab.wasm` in the folder `emcc_out/`.
 Those files then need to be loaded by your application.
 For more details, see the example.

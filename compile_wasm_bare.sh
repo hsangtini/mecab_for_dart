@@ -7,9 +7,7 @@ emcc -std=c++11 -Wno-register -O3 \
     -s MODULARIZE=1 \
     -s ALLOW_MEMORY_GROWTH \
     -s EXPORT_NAME="libmecab" \
-    --embed-file example/assets/ipadic/@ipadic/ \
     -s FORCE_FILESYSTEM \
-    -l idbfs.js \
     -s ASSERTIONS \
     $SOURCE_PATH/param.cpp $SOURCE_PATH/string_buffer.cpp \
     $SOURCE_PATH/char_property.cpp $SOURCE_PATH/tagger.cpp \
