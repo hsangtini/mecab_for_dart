@@ -41,11 +41,11 @@ install(
 
 ## Example
 
-Init the tagger:
+Init Mecab:
 
 ```dart
 var tagger = new Mecab();
-await tagger.init("assets/ipadic", true);
+await tagger.init("path/to/your/dictionary/", true);
 ```
 
 Set the boolean option in `init` function to true if you want to get the tokens including features,
