@@ -39,8 +39,6 @@ install(
 ```
 </details>
 
-1. Try `example/lib/main.dart` or the following example.
-
 ## Example
 
 Init the tagger:
@@ -70,6 +68,12 @@ for(var token in tokens) {
   text += "\n";
 }
 ```
+
+### Notes for web usage
+
+This library tries to load the mecab dictionary from the WASM filesystem.
+The easiest way to get the dictionary in it, is by bundling it when compiling mecab to wasm.
+However, it may be desirable to swap dictionaries. To do this, you need to load the dictionary into libmecab's wasm memory.
 
 ## Building the binaries
 
