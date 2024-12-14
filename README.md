@@ -1,6 +1,7 @@
 # mecab_for_dart
 
 MeCab(Japanese Morphological Analyzer) bindings for dart (standalone dart and flutter!) on all platforms.
+[Try it out in the browser](https://captaindario.github.io/mecab_for_dart/).
 
 | Android | iOS | Windows | MacOS | Linux | Web | Web --wasm |
 |:-------:|:---:|:-------:|:-----:|:-----:|:---:|:----------:|
