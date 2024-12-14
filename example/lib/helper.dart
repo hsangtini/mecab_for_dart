@@ -8,7 +8,10 @@ import 'package:path/path.dart' as path;
 /// Returns the path to the given `asset`
 String assetUri(String asset, String? package) {
   final key = asset;
-  if (Platform.isWindows){
+  if (kIsWeb) {
+    return "/$asset";
+  }
+  else if (Platform.isWindows){
     return path.join(path.dirname(Platform.resolvedExecutable), 'data',
         'flutter_assets', key);
   }
@@ -26,9 +29,6 @@ String assetUri(String asset, String? package) {
   }
   else if (Platform.isAndroid){
     return 'assets://flutter_assets/$key';
-  }
-  else if (kIsWeb) {
-    return "/$asset";
   }
   else {
     throw PlatformException(code: "Platform unsupported");
