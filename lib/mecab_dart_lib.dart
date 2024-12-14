@@ -12,7 +12,10 @@ Future<FfiHelper> loadMecabDartLib () async {
 
   FfiHelper ffiHelper;
 
-  if(Platform.isAndroid){
+  if (kIsWeb) {
+    ffiHelper = (await FfiHelper.load("assets/blobs/libmecab.js"));
+  }
+  else if(Platform.isAndroid){
     ffiHelper = (await FfiHelper.load("libmecab_dart.so", options: {LoadOption.isFfiPlugin}));
   }
   else if(Platform.isWindows) {
@@ -20,9 +23,6 @@ Future<FfiHelper> loadMecabDartLib () async {
       "${Directory(Platform.resolvedExecutable).parent.path}/blobs/libmecab.dll",
       options: {LoadOption.isFfiPlugin}
     ));
-  }
-  else if(kIsWeb) {
-    ffiHelper = (await FfiHelper.load("assets/blobs/libmecab.js"));
   }
   else {
     ffiHelper = (await FfiHelper.load("",
