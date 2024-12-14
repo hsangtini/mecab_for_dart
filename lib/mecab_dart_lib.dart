@@ -19,8 +19,7 @@ Future<FfiHelper> loadMecabDartLib () async {
     ));
   }
   else if(kIsWeb) {
-    ffiHelper = (await FfiHelper.load("assets/blobs/libmecab.js",
-    options: {LoadOption.isFfiPlugin}));
+    ffiHelper = (await FfiHelper.load("assets/blobs/libmecab.js"));
   }
   else {
     ffiHelper = (await FfiHelper.load("",

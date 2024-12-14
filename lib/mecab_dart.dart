@@ -30,10 +30,10 @@ class Mecab {
     mecabDartFfi = MecabDartFfi();
     await mecabDartFfi.init();
 
-    ffi.using((ffi.Arena arena) {
+    mecabDartFfi.mecabDartFfiHelper.safeUsing((ffi.Arena arena) {
       mecabDartFfi.mecabPtr = mecabDartFfi.initMecabFfi(
         options.toNativeUtf8(), dictDir.toNativeUtf8());
-    }, (mecabDartFfi.mecabDartFfiHelper.library).allocator);
+    });
     
   }
 
