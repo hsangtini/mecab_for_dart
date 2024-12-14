@@ -4,7 +4,7 @@ MeCab(Japanese Morphological Analyzer) bindings for dart (standalone dart and fl
 
 | Android | iOS | Windows | MacOS | Linux | Web | Web --wasm |
 |:-------:|:---:|:-------:|:-----:|:-----:|:---:|:----------:|
-|    ✅    |  ✅  |    ✅    |   ✅   |   ✅   |  ✅  |      ❌     |
+|    ✅    |  ✅  |    ✅    |   ✅   |   ✅   |  ✅  |      [❌](https://github.com/CaptainDario/mecab_for_dart/issues/5)     |
 
 ## Installation
 
