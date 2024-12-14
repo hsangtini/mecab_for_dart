@@ -18,4 +18,4 @@ windows/src/*.def
 windows/src/*.pdb
 
 # ignore mecab web binary
-example/blobs/libmecab*
+example/blobs/*
