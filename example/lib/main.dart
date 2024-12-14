@@ -37,7 +37,7 @@ class _MyAppState extends State<MyApp> {
 
       // this example ships a mecab dictionary in assets
       // alternatively you can dowlaod it from somwhere
-      String ipadDictPath = "ipadic";//assetUri("assets/ipadic", null);
+      String ipadDictPath = assetUri("assets/ipadic/", null);
 
       // Initialize mecab tagger here 
       //   + 1st parameter : dictionary folder
