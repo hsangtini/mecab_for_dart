@@ -1,4 +1,4 @@
-#include "mecab_dart_plugin.h"
+#include "mecab_for_dart_plugin.h"
 
 // This must be included before many other Windows headers.
 #include <windows.h>
@@ -13,17 +13,17 @@
 #include <memory>
 #include <sstream>
 
-namespace mecab_dart {
+namespace mecab_for_dart {
 
 // static
-void MecabDartPlugin::RegisterWithRegistrar(
+void MecabForDartPlugin::RegisterWithRegistrar(
     flutter::PluginRegistrarWindows *registrar) {
   auto channel =
       std::make_unique<flutter::MethodChannel<flutter::EncodableValue>>(
-          registrar->messenger(), "mecab_dart",
+          registrar->messenger(), "mecab_for_dart",
           &flutter::StandardMethodCodec::GetInstance());
 
-  auto plugin = std::make_unique<MecabDartPlugin>();
+  auto plugin = std::make_unique<MecabForDartPlugin>();
 
   channel->SetMethodCallHandler(
       [plugin_pointer = plugin.get()](const auto &call, auto result) {
@@ -33,11 +33,11 @@ void MecabDartPlugin::RegisterWithRegistrar(
   registrar->AddPlugin(std::move(plugin));
 }
 
-MecabDartPlugin::MecabDartPlugin() {}
+MecabForDartPlugin::MecabForDartPlugin() {}
 
-MecabDartPlugin::~MecabDartPlugin() {}
+MecabForDartPlugin::~MecabForDartPlugin() {}
 
-void MecabDartPlugin::HandleMethodCall(
+void MecabForDartPlugin::HandleMethodCall(
     const flutter::MethodCall<flutter::EncodableValue> &method_call,
     std::unique_ptr<flutter::MethodResult<flutter::EncodableValue>> result) {
   if (method_call.method_name().compare("getPlatformVersion") == 0) {
@@ -56,4 +56,4 @@ void MecabDartPlugin::HandleMethodCall(
   }
 }
 
-}  // namespace mecab_dart
+}  // namespace mecab_for_dart

@@ -1,24 +1,24 @@
-#ifndef FLUTTER_PLUGIN_MECAB_DART_PLUGIN_H_
-#define FLUTTER_PLUGIN_MECAB_DART_PLUGIN_H_
+#ifndef FLUTTER_PLUGIN_MECAB_FOR_DART_PLUGIN_H_
+#define FLUTTER_PLUGIN_MECAB_FOR_DART_PLUGIN_H_
 
 #include <flutter/method_channel.h>
 #include <flutter/plugin_registrar_windows.h>
 
 #include <memory>
 
-namespace mecab_dart {
+namespace mecab_for_dart {
 
-class MecabDartPlugin : public flutter::Plugin {
+class MecabForDartPlugin : public flutter::Plugin {
  public:
   static void RegisterWithRegistrar(flutter::PluginRegistrarWindows *registrar);
 
-  MecabDartPlugin();
+  MecabForDartPlugin();
 
-  virtual ~MecabDartPlugin();
+  virtual ~MecabForDartPlugin();
 
   // Disallow copy and assign.
-  MecabDartPlugin(const MecabDartPlugin&) = delete;
-  MecabDartPlugin& operator=(const MecabDartPlugin&) = delete;
+  MecabForDartPlugin(const MecabForDartPlugin&) = delete;
+  MecabForDartPlugin& operator=(const MecabForDartPlugin&) = delete;
 
  private:
   // Called when a method is called on this plugin's channel from Dart.
@@ -27,6 +27,6 @@ class MecabDartPlugin : public flutter::Plugin {
       std::unique_ptr<flutter::MethodResult<flutter::EncodableValue>> result);
 };
 
-}  // namespace mecab_dart
+}  // namespace mecab_for_dart
 
-#endif  // FLUTTER_PLUGIN_MECAB_DART_PLUGIN_H_
+#endif  // FLUTTER_PLUGIN_MECAB_FOR_DART_PLUGIN_H_

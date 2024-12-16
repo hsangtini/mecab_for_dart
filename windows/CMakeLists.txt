@@ -5,24 +5,24 @@
 cmake_minimum_required(VERSION 3.14)
 
 # Project-level configuration.
-set(PROJECT_NAME "mecab_dart")
+set(PROJECT_NAME "mecab_for_dart")
 project(${PROJECT_NAME} LANGUAGES CXX)
 
 # This value is used when generating builds using this plugin, so it must
 # not be changed
-set(PLUGIN_NAME "mecab_dart_plugin")
+set(PLUGIN_NAME "mecab_for_dart_plugin")
 
 # Any new source files that you add to the plugin should be added here.
 list(APPEND PLUGIN_SOURCES
-  "mecab_dart_plugin.cpp"
-  "mecab_dart_plugin.h"
+  "mecab_for_dart_plugin.cpp"
+  "mecab_for_dart_plugin.h"
 )
 
 # Define the plugin library target. Its name must not be changed (see comment
 # on PLUGIN_NAME above).
 add_library(${PLUGIN_NAME} SHARED
-  "include/mecab_dart/mecab_dart_plugin_c_api.h"
-  "mecab_dart_plugin_c_api.cpp"
+  "include/mecab_for_dart/mecab_for_dart_plugin_c_api.h"
+  "mecab_for_dart_plugin_c_api.cpp"
   ${PLUGIN_SOURCES}
 )
 
@@ -47,7 +47,7 @@ target_link_libraries(${PLUGIN_NAME} PRIVATE flutter flutter_wrapper_plugin)
 # List of absolute paths to libraries that should be bundled with the plugin.
 # This list could contain prebuilt libraries, or libraries created by an
 # external build triggered from this build file.
-set(mecab_dart_bundled_libraries
+set(mecab_for_dart_bundled_libraries
   ""
   PARENT_SCOPE
 )
