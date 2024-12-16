@@ -9,12 +9,6 @@ import 'token_node.dart';
 class Mecab {
 
 
-  /// List of file names that are used in a mecab dictionary
-  List<String> mecabDictFiles = [
-    'char.bin', 'dicrc', 'left-id.def', 'matrix.bin', 'pos-id.def',
-    'rewrite.def', 'right-id.def', 'sys.dic', 'unk.dic'
-  ];
-
   /// Pointer to the Mecab instance on the C side
   late final MecabDartFfi mecabDartFfi;
 
