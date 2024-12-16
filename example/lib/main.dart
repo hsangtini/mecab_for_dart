@@ -1,10 +1,14 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'dart:async';
 import 'package:flutter/services.dart';
 
 import 'package:mecab_for_dart/mecab_dart.dart';
 import 'package:mecab_for_dart/token_node.dart';
-import 'package:myapp/helper.dart';
+import "helper.dart"
+  if (dart.library.js_interop) "helper_web.dart"
+  if (dart.library.io) "helper_native.dart";
 
 void main() => runApp(MyApp());
 
@@ -37,12 +41,12 @@ class _MyAppState extends State<MyApp> {
 
       // this example ships a mecab dictionary in assets
       // alternatively you can dowlaod it from somwhere
-      String ipadDictPath = assetUri("assets/ipadic/", null);
+      String ipaDictPath = await getDictDir("assets/ipadic/", null);
 
       // Initialize mecab tagger here 
       //   + 1st parameter : dictionary folder
       //   + 2nd parameter : additional mecab options
-      await tagger.init(ipadDictPath, true);
+      await tagger.init(ipaDictPath, true);
 
       print("Connection to the C-side established: ${tagger.mecabDartFfi.nativeAddFunc(3, 3) == 6}");
 

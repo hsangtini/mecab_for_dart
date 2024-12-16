@@ -4,6 +4,6 @@
 /// Returns the path to mecab dictionary
 Future<String> getDictDir(String dictPath, String? package) async {
 
-  throw UnimplementedError("This is not implemented");
+  return "/$dictPath";
 
 }
