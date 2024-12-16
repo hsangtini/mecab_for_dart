@@ -1,9 +1,9 @@
 import FlutterMacOS
 
-public class SwiftMecabDartPlugin: NSObject, FlutterPlugin {
+public class SwiftMecabForDartPlugin: NSObject, FlutterPlugin {
   public static func register(with registrar: FlutterPluginRegistrar) {
-    let channel = FlutterMethodChannel(name: "mecab_dart", binaryMessenger: registrar.messenger)
-    let instance = SwiftMecabDartPlugin()
+    let channel = FlutterMethodChannel(name: "mecab_for_dart", binaryMessenger: registrar.messenger)
+    let instance = SwiftMecabForDartPlugin()
     registrar.addMethodCallDelegate(instance, channel: channel)
   }
 

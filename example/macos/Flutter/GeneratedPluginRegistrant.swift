@@ -9,6 +9,6 @@ import mecab_for_dart
 import path_provider_foundation
 
 func RegisterGeneratedPlugins(registry: FlutterPluginRegistry) {
-  MecabDartPlugin.register(with: registry.registrar(forPlugin: "MecabDartPlugin"))
+  MecabForDartPlugin.register(with: registry.registrar(forPlugin: "MecabForDartPlugin"))
   PathProviderPlugin.register(with: registry.registrar(forPlugin: "PathProviderPlugin"))
 }

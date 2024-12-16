@@ -31,15 +31,15 @@ flutter:
   plugin:
     platforms:
       android:
-        package: com.example.mecab_dart
-        pluginClass: MecabDartPlugin
+        package: com.example.mecab_for_dart
+        pluginClass: MecabForDartPlugin
       ios:
-        pluginClass: MecabDartPlugin
+        pluginClass: MecabForDartPlugin
       windows:
-        pluginClass: MecabDartPluginCApi
+        pluginClass: MecabForDartPluginCApi
       linux:
-        pluginClass: MecabDartPlugin
+        pluginClass: MecabForDartPlugin
       macos:
-        pluginClass: MecabDartPlugin
+        pluginClass: MecabForDartPlugin
       web:
 
