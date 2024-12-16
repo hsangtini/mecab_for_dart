@@ -2,7 +2,7 @@ package io.flutter.plugins;
 
 import io.flutter.plugin.common.PluginRegistry;
 import io.flutter.plugins.pathprovider.PathProviderPlugin;
-import com.example.mecab_dart.MecabDartPlugin;
+import com.example.mecab_for_dart.MecabForDartPlugin;
 
 /**
  * Generated file. Do not edit.
@@ -13,7 +13,7 @@ public final class GeneratedPluginRegistrant {
       return;
     }
     PathProviderPlugin.registerWith(registry.registrarFor("io.flutter.plugins.pathprovider.PathProviderPlugin"));
-    MecabDartPlugin.registerWith(registry.registrarFor("com.example.mecab_dart.MecabDartPlugin"));
+    MecabForDartPlugin.registerWith(registry.registrarFor("com.example.mecab_for_dart.MecabForDartPlugin"));
   }
 
   private static boolean alreadyRegisteredWith(PluginRegistry registry) {

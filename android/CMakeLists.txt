@@ -1,4 +1,6 @@
 cmake_minimum_required(VERSION 3.4.1)  # for example
+set(CMAKE_CXX_STANDARD 11)        # Set the C++ standard (e.g., C++17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)  # Ensure the standard is enforced
 
 add_library( mecab_dart
 

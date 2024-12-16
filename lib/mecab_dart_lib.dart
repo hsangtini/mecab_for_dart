@@ -16,7 +16,8 @@ Future<FfiHelper> loadMecabDartLib () async {
     ffiHelper = (await FfiHelper.load("assets/blobs/libmecab.js"));
   }
   else if(Platform.isAndroid){
-    ffiHelper = (await FfiHelper.load("libmecab_dart.so", options: {LoadOption.isFfiPlugin}));
+    // 'lib' is automatically added to the library nae
+    ffiHelper = (await FfiHelper.load("mecab_dart.so", options: {LoadOption.isFfiPlugin}));
   }
   else if(Platform.isWindows) {
     ffiHelper = (await FfiHelper.load(

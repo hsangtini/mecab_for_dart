@@ -1,4 +1,4 @@
-package com.example.mecab_dart
+package com.example.mecab_for_dart
 
 import androidx.annotation.NonNull;
 import io.flutter.embedding.engine.plugins.FlutterPlugin
@@ -8,11 +8,11 @@ import io.flutter.plugin.common.MethodChannel.MethodCallHandler
 import io.flutter.plugin.common.MethodChannel.Result
 import io.flutter.plugin.common.PluginRegistry.Registrar
 
-/** MecabDartPlugin */
-public class MecabDartPlugin: FlutterPlugin, MethodCallHandler {
+/** MecabForDartPlugin */
+public class MecabForDartPlugin: FlutterPlugin, MethodCallHandler {
   override fun onAttachedToEngine(@NonNull flutterPluginBinding: FlutterPlugin.FlutterPluginBinding) {
-    val channel = MethodChannel(flutterPluginBinding.getFlutterEngine().getDartExecutor(), "mecab_dart")
-    channel.setMethodCallHandler(MecabDartPlugin());
+    val channel = MethodChannel(flutterPluginBinding.getFlutterEngine().getDartExecutor(), "mecab_for_dart")
+    channel.setMethodCallHandler(MecabForDartPlugin());
   }
 
   // This static function is optional and equivalent to onAttachedToEngine. It supports the old
@@ -27,8 +27,8 @@ public class MecabDartPlugin: FlutterPlugin, MethodCallHandler {
   companion object {
     @JvmStatic
     fun registerWith(registrar: Registrar) {
-      val channel = MethodChannel(registrar.messenger(), "mecab_dart")
-      channel.setMethodCallHandler(MecabDartPlugin())
+      val channel = MethodChannel(registrar.messenger(), "mecab_for_dart")
+      channel.setMethodCallHandler(MecabForDartPlugin())
     }
   }
 

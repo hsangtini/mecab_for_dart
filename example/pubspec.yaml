@@ -24,7 +24,8 @@ dependencies:
   # Mecab dart wrapper
   mecab_for_dart:
     path: ../
-  universal_io: ^2.2.2
+  universal_io: 2.2.2
+  path_provider: 2.1.5
 
 dev_dependencies:
   flutter_test:
