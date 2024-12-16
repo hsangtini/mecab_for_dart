@@ -1,5 +1,9 @@
 # Mecab dart plus
 
+## 1.0.2
+
+* Fixed dictionary loading on web
+
 ## 1.0.1
 
 * Added link to web app
