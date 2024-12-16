@@ -1,5 +1,9 @@
 # Mecab dart plus
 
+## 1.0.3
+
+* Fixed plugin on mac and ios
+
 ## 1.0.2
 
 * Fixed dictionary loading on web
