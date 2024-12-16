@@ -1,12 +1,16 @@
 # Mecab dart plus
 
+## 1.0.5
+
+* Fixed plugin on Windows
+
 ## 1.0.4
 
-* Fixed plugin on android
+* Fixed plugin on Android
 
 ## 1.0.3
 
-* Fixed plugin on mac and ios
+* Fixed plugin on Mac and iOS
 
 ## 1.0.2
 
