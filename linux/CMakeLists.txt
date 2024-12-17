@@ -4,19 +4,19 @@
 cmake_minimum_required(VERSION 3.10)
 
 # Project-level configuration.
-set(PROJECT_NAME "mecab_dart")
+set(PROJECT_NAME "mecab_for_dart")
 project(${PROJECT_NAME} LANGUAGES CXX)
 
 # This value is used when generating builds using this plugin, so it must
 # not be changed.
-set(PLUGIN_NAME "mecab_dart_plugin")
+set(PLUGIN_NAME "mecab_for_dart_plugin")
 
 # Define the plugin library target. Its name must not be changed (see comment
 # on PLUGIN_NAME above).
 #
 # Any new source files that you add to the plugin should be added here.
 add_library(${PLUGIN_NAME} SHARED
-  "mecab_dart_plugin.cc"
+  "mecab_for_dart_plugin.cc"
 
   ../ios/Classes/char_property.cpp 
   ../ios/Classes/eval.cpp
@@ -61,7 +61,7 @@ target_link_libraries(${PLUGIN_NAME} PRIVATE PkgConfig::GTK)
 # List of absolute paths to libraries that should be bundled with the plugin.
 # This list could contain prebuilt libraries, or libraries created by an
 # external build triggered from this build file.
-set(mecab_dart_bundled_libraries
+set(mecab_for_dart_bundled_libraries
   ""
   PARENT_SCOPE
 )
