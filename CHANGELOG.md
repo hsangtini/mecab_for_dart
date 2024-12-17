@@ -1,5 +1,9 @@
 # Mecab dart plus
 
+## 1.0.6
+
+* Fixed plugin on Linux
+
 ## 1.0.5
 
 * Fixed plugin on Windows
